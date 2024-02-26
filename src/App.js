@@ -5,6 +5,7 @@ import Favorites from "./components/favorites"
 import Anime from "./animations/animation1.json"
 import Lottie from "lottie-react";
 import Shelf from "./components/shelf"
+
  
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       }}>
         <Lottie animationData={Anime} loop={true} style={{  height:"150px", width:"140px"}} />
         </div>
+       
    </>
   );
 }
