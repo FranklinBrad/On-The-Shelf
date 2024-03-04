@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-import { FaPlus, FaStar } from "react-icons/fa";
+import { FaPlus} from "react-icons/fa";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-export default function Search() {
+export default function SearchShelf() {
     const [modalShow, setModalShow] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
     const [searchbooks, setSearchbooks] = useState([]);
@@ -48,18 +48,6 @@ export default function Search() {
             setSelectedBooks(prevSelectedBooks => [...prevSelectedBooks, { ...book, rating: 0 }]);
             localStorage.setItem("selectedBooks", JSON.stringify([...selectedBooks, { ...book, rating: 0 }]));
         }
-    };
-
-    const handleStars = (bookKey, ratingValue) => {
-        setSelectedBooks(prevSelectedBooks =>
-            prevSelectedBooks.map(book =>
-                book.key === bookKey ? { ...book, rating: ratingValue } : book
-            )
-        );
-        const updatedSelectedBooks = selectedBooks.map(book =>
-            book.key === bookKey ? { ...book, rating: ratingValue } : book
-        );
-        localStorage.setItem("selectedBooks", JSON.stringify(updatedSelectedBooks));
     };
 
     const removeBook = (bookKey) => {
@@ -114,7 +102,7 @@ export default function Search() {
                         onClick={() => setModalShow(true)} 
                         style={{ width: '100px', height: '100px'}}
                     >
-                        Add New <FaPlus />
+                        Add To Shelf <FaPlus />
                     </Button>
                     <div style={{ marginLeft: '20px', display: 'flex', flexWrap: 'wrap' }}>
                         {selectedBooks.map((book, index) => (
@@ -123,27 +111,6 @@ export default function Search() {
                                 <Card.Body>
                                     <Card.Title>{book.title}</Card.Title>
                                     <Card.Text>{book.author_name}</Card.Text>
-                                    <div>
-                                        {[...Array(5)].map((star, i) => {
-                                            const ratingValue = i + 1;
-                                            return (
-                                                <label key={ratingValue}>
-                                                    <input
-                                                        type="radio"
-                                                        name={`rating-${book.key}`}
-                                                        value={ratingValue}
-                                                        style={{ display: "none" }}
-                                                        onClick={() => handleStars(book.key, ratingValue)}
-                                                    />
-                                                    <FaStar
-                                                        className="star"
-                                                        size={20}
-                                                        color={ratingValue <= book.rating ? "gold" : "C7D5D4"}
-                                                    />
-                                                </label>
-                                            );
-                                        })}
-                                    </div>
                                     <div style={{paddingTop:"20px"}}>
                                     <Button variant="outline-danger" style={{borderRadius:"5px", fontSize:"10px"}} onClick={() => removeBook(book.key)}>remove</Button>{' '}
 

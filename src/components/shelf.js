@@ -1,7 +1,7 @@
 import React from "react";
 
 
-import Search from "./search"
+import SearchShelf from "./searchShelf"
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -20,7 +20,7 @@ export default function Shelf(){
                 <h1 style={{ paddingRight: "5px", paddingLeft: "10px" }}>On The Shelf</h1>
             </div>
         </div>
-        <Search/>
+        <SearchShelf/>
         </div>
         </>
     );
